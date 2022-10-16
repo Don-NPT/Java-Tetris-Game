@@ -68,3 +68,63 @@ https://zetcode.com/javagames/tetris/
   | T7(valid, TShape)        | 0     | TShape        | 0                              |
   | T8(valid, SquareShape)   | 0     | SquareShape   | 0                              |
   | T9(valid, MirroredShape) | 0     | MirroredShape | -1                             |
+
+### Third Test Case
+1. Identify testable functions
+    * minX()
+
+2. Identify parameters, return types, return values, and exceptional behavior
+    * parameter: -
+    * return type: int
+    * return value: the minimum value of x inside a pieceShape
+
+3. Model the input domain
+
+|                         | b1        | b2      | b3|b4|b5|b6|b7|b8|
+|-------------------------|-----------|---------|------------------------|------------------------|------------------------|------------------------|------------------------|------------------------|
+| C2: coord of each shape | NoShape   | ZShape  | SShape |LineShape |TShape| SquareShape| LShape| MirroredLShape  | 
+4. Combine partitions into tests
+    * ISP Criteria: ACoC
+    * Test requirements -- number of tests (upper bound) = 8
+      (NoShape), (ZShape), (SShape), (LineShape), (TShape), (SquareShape), (MirroredShape)
+5. Derive test values
+* | Test              | shape         | result |
+  |-------------------|---------------|--------|
+  | T1(NoShape)       | NoShape       | 0      |
+  | T2(ZShape)        | ZShape        | -1     |
+  | T3(SShape)        | SShape        | 0      |
+  | T4(LineShape)     | LineShape     | 0      |
+  | T5(TShape)        | TShape        | -1     |
+  | T6(SquareShape)   | SquareShape   | 0      |
+  | T7(LShape)        | LShape        | -1     |
+  | T8(MirroredShape) | MirroredShape | 0      |
+
+### Forth Test Case
+1. Identify testable functions
+    * minY()
+
+2. Identify parameters, return types, return values, and exceptional behavior
+    * parameter: -
+    * return type: int
+    * return value: the minimum value of y inside a pieceShape
+
+3. Model the input domain
+
+|                         | b1        | b2      | b3|b4|b5|b6|b7|b8|
+|-------------------------|-----------|---------|------------------------|------------------------|------------------------|------------------------|------------------------|------------------------|
+| C2: coord of each shape | NoShape   | ZShape  | SShape |LineShape |TShape| SquareShape| LShape| MirroredLShape  | 
+4. Combine partitions into tests
+    * ISP Criteria: ACoC
+    * Test requirements -- number of tests (upper bound) = 8
+      (NoShape), (ZShape), (SShape), (LineShape), (TShape), (SquareShape), (MirroredShape)
+5. Derive test values
+* | Test              | shape         | result |
+    |-------------------|--------|--------|
+  | T1(NoShape)       | NoShape       | 0      |
+  | T2(ZShape)        | ZShape        | -1     |
+  | T3(SShape)        | SShape        | -1     |
+  | T4(LineShape)     | LineShape     | -1     |
+  | T5(TShape)        | TShape        | 0      |
+  | T6(SquareShape)   | SquareShape   | 0      |
+  | T7(LShape)        | LShape        | -1     |
+  | T8(MirroredShape) | MirroredShape | -1     |

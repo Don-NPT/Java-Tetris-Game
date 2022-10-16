@@ -152,41 +152,62 @@ public class ShapeTest extends Shape{
         var shape = new Shape();
         // if shape is NoShape
         assertEquals(0, shape.minX());
-        while(shape.getShape() != Tetrominoe.ZShape){
-            shape.setRandomShape();
-        }
         // if shape is ZShape
-        assertEquals(-1, shape.minX());
-        while(shape.getShape() != Tetrominoe.SShape){
+        while(true){
+            if(shape.getShape() == Tetrominoe.ZShape){
+                assertEquals(-1, shape.minX());
+                break;
+            }
             shape.setRandomShape();
         }
         // if shape is SShape
-        assertEquals(0, shape.minX());
-        while(shape.getShape() != Tetrominoe.LineShape){
+        while(true){
+            if(shape.getShape() == Tetrominoe.SShape){
+                assertEquals(0, shape.minX());
+                break;
+            }
             shape.setRandomShape();
         }
         // if shape is LineShape
-        assertEquals(0, shape.minX());
-        while(shape.getShape() != Tetrominoe.TShape){
+        while(true){
+            if(shape.getShape() == Tetrominoe.LineShape){
+                assertEquals(0, shape.minX());
+                break;
+            }
             shape.setRandomShape();
         }
         // if shape is TShape
-        assertEquals(-1, shape.minX());
-        while(shape.getShape() != Tetrominoe.SquareShape){
+        while(true){
+            if(shape.getShape() == Tetrominoe.TShape){
+                assertEquals(-1, shape.minX());
+                break;
+            }
             shape.setRandomShape();
         }
         // if shape is SquareShape
-        assertEquals(0, shape.minX());
-        while(shape.getShape() != Tetrominoe.LShape){
+        while(true){
+            if(shape.getShape() == Tetrominoe.SquareShape){
+                assertEquals(0, shape.minX());
+                break;
+            }
             shape.setRandomShape();
         }
         // if shape is LShape
-        assertEquals(-1, shape.minX());
-        while(shape.getShape() != Tetrominoe.MirroredLShape){
+        while(true){
+            if(shape.getShape() == Tetrominoe.LShape){
+                assertEquals(-1, shape.minX());
+                break;
+            }
             shape.setRandomShape();
         }
         // if shape is MirroredShape
-        assertEquals(0, shape.minX());
+        while(true){
+            if(shape.getShape() == Tetrominoe.MirroredLShape){
+                assertEquals(0, shape.minX());
+                break;
+            }
+            shape.setRandomShape();
+        }
     }
 
     @Test
