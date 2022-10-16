@@ -204,18 +204,109 @@ https://zetcode.com/javagames/tetris/
 
 |                      | b1   | b2    |
 |----------------------|------|-------|
-| C1: shape is move    | true | false |
-| C2: show pause lable | true | false | 
+| C1: shape is move    | true | false |  
+| C2: show pause label | true | false | 
+| C3: isPaused         | true | false |
 
 4. Combine partitions into tests
-    * ISP Criteria: ECC
+    * ISP Criteria: Pair wise
     * Test requirements -- number of tests (upper bound) = 4
-      (true, true), (true, false), (false, true), (false, false)
+      (true, true, true), (true, false, false), (false, true, true), (false, false, false)
     *
 5. Derive test values
-* | Test                            | shape is move                   | show pause label                | result                          |
-    |---------------------------------|---------------------------------|---------------------------------|---------------------------------|
-  | T1(true, true)                  | true                            | true                            | Invalid                         |
-  | T2(true, false)                 | true                            | false                           | String.valueOf(numLinesRemoved) |
-  * | T3(false, true)                 | false                           | true                            | show "paused" label             |
-  | T4(false, false)                | false                           | false                           | Invalid                         |
+* | Test                    | shape is move                   | show pause label                 | isPaused | result              |
+    |--------------------------|----------------------------------|----------|---------------------|---------------------------------|
+  | T1(true, true, true)    | true                            | true                             | true     | Invalid             |
+  | T2(true, false, false)  | true                            | false                            | false    | String.valueOf(numLinesRemoved) |
+  * | T3(false, true, true)   | false                           | true                             | true     | show "paused" label |
+  | T4(false, false, false) | false                           | false                            | false    | Invalid  |
+
+### Eighth Test Case
+1. Identify testable functions
+    * getShape()
+
+2. Identify parameters, return types, return values, and exceptional behavior
+    * parameter: -
+    * return type: Tetrominoe
+    * return value: one type of Tetrominoe that's called pieceShape.
+
+3. Model the input domain
+
+|                       | b1                      | b2                                | b3|b4|b5|b6|b7|b8|
+|-----------------------|-------------------------|-----------------------------------|------------------------|------------------------|------------------------|------------------------|------------------------|------------------------|
+| C1: Shape of newPiece | noShape                 | ZShape                            |  SShape |LineShape |TShape| SquareShape| LShape| MirroredLShape  |
+4. Combine partitions into tests
+    * ISP Criteria: ECC
+    * Test requirements -- number of tests (upper bound) = 8
+      (NoShape), (ZShape, (SShape), (LineShape), (TShape), (SquareShape), (MirroredShape)
+5. Derive test values
+* | Test              | shape         | result |
+    |-------------------|---------------|----------|
+  | T1(NoShape)       | NoShape       | NoShape   |
+  | T2(ZShape)        | ZShape        | ZShape  |
+  | T3(SShape)        | SShape        | SShape   |
+  | T4(LineShape)     | LineShape     | LineShape   |
+  | T5(TShape)        | TShape        | TShape   |
+  | T6(SquareShape)   | SquareShape   | SquareShape   |
+  | T7(LShape)        | LShape        | LShape   |
+  | T8(MirroredShape) | MirroredShape | MirroredShape |
+
+### Ninth Test Case
+1. Identify testable functions
+    * rotateLeft()
+
+2. Identify parameters, return types, return values, and exceptional behavior
+    * parameter: pieceShape
+    * return type: Shape
+    * return value: Shape object after rotate
+
+3. Model the input domain
+
+|                         | b1        | b2      | b3|b4|b5|b6|b7|b8|
+|-------------------------|-----------|---------|------------------------|------------------------|------------------------|------------------------|------------------------|------------------------|
+| C1: coord of each shape | NoShape   | ZShape  | SShape |LineShape |TShape| SquareShape| LShape| MirroredLShape  | 
+4. Combine partitions into tests
+    * ISP Criteria: MBCC
+    * Test requirements -- number of tests (upper bound) = 8
+      (NoShape), (ZShape), (SShape), (LineShape), (TShape), (SquareShape), (MirroredShape)
+5. Derive test values
+* | Test              | shape         | result (check by coords)             |
+      |-------------------|--------------------------------------|--------|
+  | T1(NoShape)       | NoShape       | {0, 0},{ 0, 0 },{ 0, 0 }, { 0, 0 }   |
+  | T2(ZShape)        | ZShape        | {-1, 0 },{0, 0 }, {0, 1 },{1, 1 }    |
+  | T3(SShape)        | SShape        | {-1, 0 },{0, 0 }, {0, -1 },{1, -1 }  |
+  | T4(LineShape)     | LineShape     | {-1, 0 },{0, 0 },{1, 0 },{2, 0 }     |
+  | T5(TShape)        | TShape        | { 0, 1 },{ 0, 0 },{ 0, -1 },{ 1, 0 } |
+  | T6(SquareShape)   | SquareShape   | { 0, 0 },{ 1, 0 },{ 0, 1 },{ 1, 1 }  |
+  | T7(LShape)        | LShape        | { -1,1 },{ -1,0 },{ 0, 0 },{ 1,0 }   |
+  | T8(MirroredShape) | MirroredShape | { -1, -1 },{ -1, 0 },{ 0, 0 },{1,0 } |
+
+### Tenth Test Case
+1. Identify testable functions
+    * rotateRight()
+
+2. Identify parameters, return types, return values, and exceptional behavior
+    * parameter: pieceShape
+    * return type: Shape
+    * return value: Shape object after rotate
+
+3. Model the input domain
+
+|                         | b1        | b2      | b3|b4|b5|b6|b7|b8|
+|-------------------------|-----------|---------|------------------------|------------------------|------------------------|------------------------|------------------------|------------------------|
+| C1: coord of each shape | NoShape   | ZShape  | SShape |LineShape |TShape| SquareShape| LShape| MirroredLShape  | 
+4. Combine partitions into tests
+    * ISP Criteria: MBCC
+    * Test requirements -- number of tests (upper bound) = 8
+      (NoShape), (ZShape), (SShape), (LineShape), (TShape), (SquareShape), (MirroredShape)
+5. Derive test values
+* | Test              | shape         | result (check by coords)            |
+        |-------------------|-------------------------------------|--------|
+  | T1(NoShape)       | NoShape       | {0, 0},{ 0, 0 },{ 0, 0 }, { 0, 0 }  |
+  | T2(ZShape)        | ZShape        | {1, 0 },{ 0, 0 },{ 0,-1 },{ -1, -1 } |
+  | T3(SShape)        | SShape        | { 1, 0 },{ 0, 0 },{ 0, 1 },{ -1, 1 } |
+  | T4(LineShape)     | LineShape     | { 1, 0 },{ 0, 0 },{ -1, 0 },{-2, 0 } |
+  | T5(TShape)        | TShape        | { 0, -1 },{ 0, 0 },{ 0, 1 },{-1, 0 } |
+  | T6(SquareShape)   | SquareShape   | { 0, 0 },{ 1, 0 },{ 0, 1 },{ 1, 1 } |
+  | T7(LShape)        | LShape        | { 1, -1 },{ 1, 0 },{ 0, 0 },{-1, 0 } |
+  | T8(MirroredShape) | MirroredShape | { 1, 1 },{ 1, 0 },{ 0, 0 },{-1, 0 } |

@@ -3,11 +3,9 @@
  */
 package test;
 
-import com.zetcode.Board;
 import com.zetcode.Shape;
 import org.junit.Test;
 
-import java.awt.event.KeyEvent;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

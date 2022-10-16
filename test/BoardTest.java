@@ -18,8 +18,6 @@ import static org.junit.Assert.*;
 
 public class BoardTest extends Shape{
 
-    private Field field;
-
     @Test
     public void testTryMove() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         Tetris tetris = new Tetris();
@@ -91,7 +89,6 @@ public class BoardTest extends Shape{
     public void testShapeAt() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException, NoSuchFieldException {
         Tetris tetris = new Tetris();
         Board board = new Board(tetris);
-        Shape shape = new Shape();
 
         // setup board
         Method start = board.getClass().getDeclaredMethod("start");
@@ -135,13 +132,19 @@ public class BoardTest extends Shape{
     public void testPause() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, NoSuchFieldException {
         Tetris tetris = new Tetris();
         Board board = new Board(tetris);
+
         Method pause = board.getClass().getDeclaredMethod("pause");
         pause.setAccessible(true);
         pause.invoke(board);
+
         Field field = board.getClass().getDeclaredField("statusbar");
         field.setAccessible(true);
+
         JLabel str = (JLabel)field.get(board);
         assertEquals("paused",str.getText());
+
+        pause.invoke(board);
+        assertEquals("0",str.getText());
     }
 
 }
