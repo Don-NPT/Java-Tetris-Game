@@ -212,13 +212,13 @@ https://zetcode.com/javagames/tetris/
     * ISP Criteria: Pair wise
     * Test requirements -- number of tests (upper bound) = 4
       (true, true, true), (true, false, false), (false, true, true), (false, false, false)
-    *
+   
 5. Derive test values
 * | Test                    | shape is move                   | show pause label                 | isPaused | result              |
     |--------------------------|----------------------------------|----------|---------------------|---------------------------------|
   | T1(true, true, true)    | true                            | true                             | true     | Invalid             |
   | T2(true, false, false)  | true                            | false                            | false    | String.valueOf(numLinesRemoved) |
-  * | T3(false, true, true)   | false                           | true                             | true     | show "paused" label |
+   | T3(false, true, true)   | false                           | true                             | true     | show "paused" label |
   | T4(false, false, false) | false                           | false                            | false    | Invalid  |
 
 ### Eighth Test Case
@@ -271,7 +271,7 @@ https://zetcode.com/javagames/tetris/
       (NoShape), (ZShape), (SShape), (LineShape), (TShape), (SquareShape), (MirroredShape)
 5. Derive test values
 * | Test              | shape         | result (check by coords)             |
-      |-------------------|--------------------------------------|--------|
+      |-------------------|-----------------|------------------------------|
   | T1(NoShape)       | NoShape       | {0, 0},{ 0, 0 },{ 0, 0 }, { 0, 0 }   |
   | T2(ZShape)        | ZShape        | {-1, 0 },{0, 0 }, {0, 1 },{1, 1 }    |
   | T3(SShape)        | SShape        | {-1, 0 },{0, 0 }, {0, -1 },{1, -1 }  |
@@ -280,6 +280,7 @@ https://zetcode.com/javagames/tetris/
   | T6(SquareShape)   | SquareShape   | { 0, 0 },{ 1, 0 },{ 0, 1 },{ 1, 1 }  |
   | T7(LShape)        | LShape        | { -1,1 },{ -1,0 },{ 0, 0 },{ 1,0 }   |
   | T8(MirroredShape) | MirroredShape | { -1, -1 },{ -1, 0 },{ 0, 0 },{1,0 } |
+
 
 ### Tenth Test Case
 1. Identify testable functions
@@ -310,3 +311,4 @@ https://zetcode.com/javagames/tetris/
   | T6(SquareShape)   | SquareShape   | { 0, 0 },{ 1, 0 },{ 0, 1 },{ 1, 1 } |
   | T7(LShape)        | LShape        | { 1, -1 },{ 1, 0 },{ 0, 0 },{-1, 0 } |
   | T8(MirroredShape) | MirroredShape | { 1, 1 },{ 1, 0 },{ 0, 0 },{-1, 0 } |
+
