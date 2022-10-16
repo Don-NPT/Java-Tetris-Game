@@ -3,8 +3,12 @@
 */
 package test;
 
+import com.zetcode.Board;
 import com.zetcode.Shape;
 import org.junit.Test;
+
+import java.awt.event.KeyEvent;
+
 import static org.junit.Assert.*;
 
 public class ShapeTest extends Shape{
@@ -252,8 +256,4 @@ public class ShapeTest extends Shape{
         assertEquals(-1, shape.minY());
     }
 
-    @Test
-    public void testRotateRight(){
-
-    }
 }

@@ -39,19 +39,19 @@ https://zetcode.com/javagames/tetris/
 
 ### Second Test Case
 1. Identify testable functions
-   * y(int index)
+   * rotateLeft()
 
 2. Identify parameters, return types, return values, and exceptional behavior
-   * parameter: index
-   * return type: int
-   * return value: the value inside coords[index][0]
+   * parameter: pieceShape
+   * return type: Shape
+   * return value: a Shape object after rotate left
 
 3. Model the input domain
 
-|                         | b1                     | b2                               | b3|b4|b5|b6|b7|b8|
-|-------------------------|------------------------|----------------------------------|------------------------|------------------------|------------------------|------------------------|------------------------|------------------------|
-| C1: validity of index   | -1 < index < 4 (valid) | index < 0 or index > 3 (invalid) |
-| C2: coord of each shape | NoShape                | ZShape                           | SShape |LineShape |TShape| SquareShape| LShape| MirroredLShape  | 
+|                           | b1      | b2     | b3|b4|b5|b6|b7|b8|
+|---------------------------|---------|--------|------------------------|------------------------|------------------------|------------------------|------------------------|------------------------|
+| C1: Is shape SquareShape? | True    | False  |
+
 4. Combine partitions into tests
    * ISP Criteria: BCC
    * Test requirements -- number of tests (upper bound) = 9
@@ -128,3 +128,38 @@ https://zetcode.com/javagames/tetris/
   | T6(SquareShape)   | SquareShape   | 0      |
   | T7(LShape)        | LShape        | -1     |
   | T8(MirroredShape) | MirroredShape | -1     |
+
+### Fifth Test Case
+1. Identify testable functions
+    * tryMove(Shape newPiece, int newX, int newY)
+
+2. Identify parameters, return types, return values, and exceptional behavior
+    * parameter: newPiece, newX, newY
+    * return type: boolean
+    * return value: the boolean value whether newPiece can move
+
+3. Model the input domain
+
+|                      | b1                      | b2                                | b3|b4|b5|b6|b7|b8|
+|----------------------|-------------------------|-----------------------------------|------------------------|------------------------|------------------------|------------------------|------------------------|------------------------|
+| C1: validity of newX | 0 <= index < 10 (valid) | index < 0 or index > 10 (invalid) |  | || | |   |
+| C2: validity of newY | 0 <= index < 22 (valid) | index < 0 or index > 21 (invalid) |  | || | |   |
+| C3: Shape of newPiece | noShape                 | ZShape                            |  SShape |LineShape |TShape| SquareShape| LShape| MirroredLShape  |
+| C4: x + newPiece.x   | < 10 and >= 0  (valid)  | > 9 or < 0 (valid)                |  | || | |
+| C5: x + newPiece.x   | < 22 and >= 0  (valid)  | > 21 or < 0 (valid)               |  | || | |
+4. Combine partitions into tests
+    * ISP Criteria: ECC
+    * Test requirements -- number of tests (upper bound) = 8
+      (valid, valid, NoShape, valid), (invalid, invalid, ZShape, invalid), (valid, valid, SShape, valid), (valid, valid, LineShape, valid), (valid, valid, TShape, valid), (valid, valid, SquareShape, valid), (valid, valid, MirroredShape, invalid)
+5. Derive test values
+* | Test                                     | newX | newY | shape         | result |
+  |------------------------------------------|------|------|--------|--------|
+  | T1(valid, valid, NoShape, valid)         | 9    | 21   | NoShape       | true   |
+  | T2(invalid, invalid, ZShape, invalid)    | 5    | 5    | ZShape        | false  |
+  | T3(valid, valid, SShape, valid)          | 5    | 5    | SShape        | true   |
+  | T4(valid, valid, LineShape, valid)       | 5    | 5    | LineShape     | true   |
+  | T5(valid, valid, TShape, valid)          | 5    | 5    | TShape        | true   |
+  | T6(valid, valid, SquareShape, valid)     | 5    | 5    | SquareShape   | true   |
+  | T7(valid, valid, LShape, valid)          | 5    | 5    | LShape        | true   |
+  | T8(valid, valid, MirroredShape, invalid) | 9    | 21   | MirroredShape | false  |
+
