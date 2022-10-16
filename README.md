@@ -204,7 +204,7 @@ https://zetcode.com/javagames/tetris/
 
 |                      | b1   | b2    |
 |----------------------|------|-------|
-| C1: shape is move    | true | false |  
+| C1: shape is moving  | true | false |  
 | C2: show pause label | true | false | 
 | C3: isPaused         | true | false |
 
