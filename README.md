@@ -82,7 +82,7 @@ https://zetcode.com/javagames/tetris/
 
 |                         | b1        | b2      | b3|b4|b5|b6|b7|b8|
 |-------------------------|-----------|---------|------------------------|------------------------|------------------------|------------------------|------------------------|------------------------|
-| C2: coord of each shape | NoShape   | ZShape  | SShape |LineShape |TShape| SquareShape| LShape| MirroredLShape  | 
+| C1: coord of each shape | NoShape   | ZShape  | SShape |LineShape |TShape| SquareShape| LShape| MirroredLShape  | 
 4. Combine partitions into tests
     * ISP Criteria: ACoC
     * Test requirements -- number of tests (upper bound) = 8
@@ -112,7 +112,7 @@ https://zetcode.com/javagames/tetris/
 
 |                         | b1        | b2      | b3|b4|b5|b6|b7|b8|
 |-------------------------|-----------|---------|------------------------|------------------------|------------------------|------------------------|------------------------|------------------------|
-| C2: coord of each shape | NoShape   | ZShape  | SShape |LineShape |TShape| SquareShape| LShape| MirroredLShape  | 
+| C1: coord of each shape | NoShape   | ZShape  | SShape |LineShape |TShape| SquareShape| LShape| MirroredLShape  | 
 4. Combine partitions into tests
     * ISP Criteria: ACoC
     * Test requirements -- number of tests (upper bound) = 8
