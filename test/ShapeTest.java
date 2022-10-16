@@ -1,6 +1,6 @@
-/* Copyright (C) 2022 Napat Sutthiwong - All Rights Reserved
-* You may use, distribute and modify this code under the terms of the ICT license.
-*/
+/* Copyright (C) 2022 Napat Sutthiwong, Natthachaimongkol Chayopathum, Pathtita Somboonyingsuk, Chayaphol Tangnititham   - All Rights Reserved
+ * You may use, distribute and modify this code under the terms of the ICT license.
+ */
 package test;
 
 import com.zetcode.Board;
