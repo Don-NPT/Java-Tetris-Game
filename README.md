@@ -271,7 +271,7 @@ https://zetcode.com/javagames/tetris/
       (NoShape), (ZShape), (SShape), (LineShape), (TShape), (SquareShape), (MirroredShape)
 5. Derive test values
 * | Test              | shape         | result (check by coords)             |
-      |-------------------|-----------------|------------------------------|
+  |-------------------|---------------|--------------------------------------|
   | T1(NoShape)       | NoShape       | {0, 0},{ 0, 0 },{ 0, 0 }, { 0, 0 }   |
   | T2(ZShape)        | ZShape        | {-1, 0 },{0, 0 }, {0, 1 },{1, 1 }    |
   | T3(SShape)        | SShape        | {-1, 0 },{0, 0 }, {0, -1 },{1, -1 }  |
