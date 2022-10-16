@@ -301,14 +301,14 @@ https://zetcode.com/javagames/tetris/
     * Test requirements -- number of tests (upper bound) = 8
       (NoShape), (ZShape), (SShape), (LineShape), (TShape), (SquareShape), (MirroredShape)
 5. Derive test values
-* | Test              | shape         | result (check by coords)            |
-        |-------------------|-------------------------------------|--------|
-  | T1(NoShape)       | NoShape       | {0, 0},{ 0, 0 },{ 0, 0 }, { 0, 0 }  |
+* | Test              | shape         | result (check by coords)             |
+  |-------------------|---------------|--------------------------------------|
+  | T1(NoShape)       | NoShape       | {0, 0},{ 0, 0 },{ 0, 0 }, { 0, 0 }   |
   | T2(ZShape)        | ZShape        | {1, 0 },{ 0, 0 },{ 0,-1 },{ -1, -1 } |
   | T3(SShape)        | SShape        | { 1, 0 },{ 0, 0 },{ 0, 1 },{ -1, 1 } |
   | T4(LineShape)     | LineShape     | { 1, 0 },{ 0, 0 },{ -1, 0 },{-2, 0 } |
   | T5(TShape)        | TShape        | { 0, -1 },{ 0, 0 },{ 0, 1 },{-1, 0 } |
-  | T6(SquareShape)   | SquareShape   | { 0, 0 },{ 1, 0 },{ 0, 1 },{ 1, 1 } |
+  | T6(SquareShape)   | SquareShape   | { 0, 0 },{ 1, 0 },{ 0, 1 },{ 1, 1 }  |
   | T7(LShape)        | LShape        | { 1, -1 },{ 1, 0 },{ 0, 0 },{-1, 0 } |
-  | T8(MirroredShape) | MirroredShape | { 1, 1 },{ 1, 0 },{ 0, 0 },{-1, 0 } |
+  | T8(MirroredShape) | MirroredShape | { 1, 1 },{ 1, 0 },{ 0, 0 },{-1, 0 }  |
 
