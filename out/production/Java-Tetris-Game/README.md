@@ -163,3 +163,30 @@ https://zetcode.com/javagames/tetris/
   | T7(valid, valid, LShape, valid)          | 5    | 5    | LShape        | true   |
   | T8(valid, valid, MirroredShape, invalid) | 9    | 21   | MirroredShape | false  |
 
+### Sixth Test Case
+1. Identify testable functions
+    * shapeAt(int x, int y)
+
+2. Identify parameters, return types, return values, and exceptional behavior
+    * parameter: x, y
+    * return type: Tetrominoe
+    * return value: Tetrominoe object in that position
+
+3. Model the input domain
+
+|                                     | b1                        | b2                                    | 
+|-------------------------------------|---------------------------|---------------------------------------|
+| C1: (y * BOARD_WIDTH) + x           | -1 < result < 220 (valid) | result >= 220 or result < 0 (invalid) |
+| C2: Is it NoShape in that position? | True                      | False                                 |  
+
+4. Combine partitions into tests
+    * ISP Criteria: PWC
+    * Test requirements -- number of tests (upper bound) = 4
+      (valid, True), (valid, False), (invalid, False), (invalid, True)
+5. Derive test valuess
+* | Test               | x   | y | result  |
+  |-----|--|---------|---------|
+  | T1(valid, True)   | 0   | 0 | NoShape |
+  | T2(valid, False) | 20   | 20 | not NoShape   |
+  | T3(invalid, False) | 20   | 22 | Error   |
+  | T4(invalid, True) | 20   | 22 | Error    |

@@ -8,6 +8,9 @@ import com.zetcode.Shape;
 import org.junit.Test;
 
 import java.awt.event.KeyEvent;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import static org.junit.Assert.*;
 
@@ -254,6 +257,18 @@ public class ShapeTest extends Shape{
         }
         // if shape is MirroredShape
         assertEquals(-1, shape.minY());
+    }
+
+    @Test
+    public void testRotate() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, NoSuchFieldException {
+        Shape shape = new Shape();
+        Method setShape = shape.getClass().getDeclaredMethod("setShape", Tetrominoe.class);
+        setShape.setAccessible(true);
+        setShape.invoke(shape, Tetrominoe.MirroredLShape);
+
+        Shape result = shape.rotateRight();
+        Field coords = result.getClass().getDeclaredField("coords");
+        assertEquals(new int[][]{{1, 1},{1, 0},{0, 0},{-1, 0}}, coords);
     }
 
 }

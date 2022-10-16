@@ -5,13 +5,16 @@ import com.zetcode.Shape;
 import com.zetcode.Tetris;
 import org.junit.Test;
 
-import java.awt.event.KeyEvent;
+import javax.swing.*;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class BoardTest extends Shape{
+
+    private Field field;
 
     @Test
     public void testTryMove() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
@@ -78,7 +81,63 @@ public class BoardTest extends Shape{
         }
         Object result8 = method.invoke(board, shape, 9, 21);
         assertEquals(false, result8);
+    }
 
+    @Test
+    public void testShapeAt() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException, NoSuchFieldException {
+        Tetris tetris = new Tetris();
+        Board board = new Board(tetris);
+        Shape shape = new Shape();
+
+        // setup board
+        Method start = board.getClass().getDeclaredMethod("start");
+        start.setAccessible(true);
+        start.invoke(board);
+
+        // 1st test
+        Method method = board.getClass().getDeclaredMethod("shapeAt", int.class, int.class);
+        method.setAccessible(true);
+        Object result1 = method.invoke(board, 0, 0);
+        assertEquals(Tetrominoe.NoShape, result1);
+
+        // 2nd test
+        Field field = board.getClass().getDeclaredField("board");
+        field.setAccessible(true);
+        Tetrominoe[] temp = (Tetrominoe[]) field.get(board);
+        for (int i = 0; i < 22 * 10; i++) {
+
+            temp[i] = Tetrominoe.ZShape;
+        }
+        Object result2 = method.invoke(board, 10, 20);
+        assertNotEquals(Tetrominoe.NoShape, result2);
+
+        // 3rd test
+        Tetrominoe[] temp2 = (Tetrominoe[]) field.get(board);
+        for (int i = 0; i < 22 * 10; i++) {
+
+            temp2[i] = Tetrominoe.ZShape;
+        }
+        assertThrows(java.lang.reflect.InvocationTargetException.class, () -> {
+            method.invoke(board, 20, 22);
+        });
+
+        // 4rd test
+        assertThrows(java.lang.reflect.InvocationTargetException.class, () -> {
+            method.invoke(board, 20, 22);
+        });
+    }
+
+    @Test
+    public void testPause() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, NoSuchFieldException {
+        Tetris tetris = new Tetris();
+        Board board = new Board(tetris);
+        Method pause = board.getClass().getDeclaredMethod("pause");
+        pause.setAccessible(true);
+        pause.invoke(board);
+        Field field = board.getClass().getDeclaredField("statusbar");
+        field.setAccessible(true);
+        JLabel str = (JLabel)field.get(board);
+        assertEquals("paused",str.getText());
     }
 
 }
