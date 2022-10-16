@@ -190,3 +190,32 @@ https://zetcode.com/javagames/tetris/
   | T2(valid, False) | 20   | 20 | not NoShape   |
   | T3(invalid, False) | 20   | 22 | Error   |
   | T4(invalid, True) | 20   | 22 | Error    |
+
+### Seventh Test Case
+1. Identify testable functions
+    * pause()
+
+2. Identify parameters, return types, return values, and exceptional behavior
+    * parameter: -
+    * return type: void
+    * return value: -
+
+3. Model the input domain
+
+|                      | b1   | b2    |
+|----------------------|------|-------|
+| C1: shape is move    | true | false |
+| C2: show pause lable | true | false | 
+
+4. Combine partitions into tests
+    * ISP Criteria: ECC
+    * Test requirements -- number of tests (upper bound) = 4
+      (true, true), (true, false), (false, true), (false, false)
+    *
+5. Derive test values
+* | Test                            | shape is move                   | show pause label                | result                          |
+    |---------------------------------|---------------------------------|---------------------------------|---------------------------------|
+  | T1(true, true)                  | true                            | true                            | Invalid                         |
+  | T2(true, false)                 | true                            | false                           | String.valueOf(numLinesRemoved) |
+  * | T3(false, true)                 | false                           | true                            | show "paused" label             |
+  | T4(false, false)                | false                           | false                           | Invalid                         |
