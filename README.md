@@ -6,6 +6,8 @@ https://zetcode.com/javagames/tetris/
 
 ## Test Case Explanation
 ### First Test Case
+Name: testX
+Goal: To test the value of x in coords of a pieceShape
 1. Identify testable functions
    * x(int index)
 
@@ -38,38 +40,42 @@ https://zetcode.com/javagames/tetris/
   | T9(valid, MirroredShape) | 3     | MirroredShape | 0                              |
 
 ### Second Test Case
+Name: testY
+Goal: To test the value of y in coords of a pieceShape
 1. Identify testable functions
-   * rotateLeft()
+    * y(int index)
 
 2. Identify parameters, return types, return values, and exceptional behavior
-   * parameter: pieceShape
-   * return type: Shape
-   * return value: a Shape object after rotate left
+    * parameter: index
+    * return type: int
+    * return value: the value inside coords[index][0]
 
 3. Model the input domain
 
-|                           | b1      | b2     | b3|b4|b5|b6|b7|b8|
-|---------------------------|---------|--------|------------------------|------------------------|------------------------|------------------------|------------------------|------------------------|
-| C1: Is shape SquareShape? | True    | False  |
-
+|                         | b1                     | b2                               | b3|b4|b5|b6|b7|b8|
+|-------------------------|------------------------|----------------------------------|------------------------|------------------------|------------------------|------------------------|------------------------|------------------------|
+| C1: validity of index   | -1 < index < 4 (valid) | index < 0 or index > 3 (invalid) |
+| C2: coord of each shape | NoShape                | ZShape                           | SShape |LineShape |TShape| SquareShape| LShape| MirroredLShape  | 
 4. Combine partitions into tests
-   * ISP Criteria: BCC
-   * Test requirements -- number of tests (upper bound) = 9
-     (valid, LShape),(invalid, LShape), (valid, NoShape), (valid, ZShape), (valid, SShape), (valid, LineShape), (valid, TShape), (valid, SquareShape), (valid, MirroredShape)
+    * ISP Criteria: BCC
+    * Test requirements -- number of tests (upper bound) = 9
+      (valid, LShape),(invalid, LShape), (valid, NoShape), (valid, ZShape), (valid, SShape), (valid, LineShape), (valid, TShape), (valid, SquareShape), (valid, MirroredShape)
 5. Derive test values
 * | Test                     | index | shape         | result                         |
-    |-------|-------|--------------------------------|--------------------------------|
-  | T1(valid, LShape)        | 0     | LShape        | -1                             |
+    |--------------------------|-------|--------------------------------|--------------------------------|
+  | T1(valid, LShape)        | 3     | LShape        | 0                              |
   | T2(invalid, LShape)      | 4     | LShape        | ArrayIndexOutOfBoundsException |
-  | T3(valid, NoShape)       | 0     | NoShape       | 0                              |
-  | T4(valid, ZShape)        | 0     | ZShape        | -1                             |
-  | T5(valid, SShape)        | 0     | SShape        | -1                             |
-  | T6(valid, LineShape)     | 0     | LineShape     | -1                             |
-  | T7(valid, TShape)        | 0     | TShape        | 0                              |
-  | T8(valid, SquareShape)   | 0     | SquareShape   | 0                              |
-  | T9(valid, MirroredShape) | 0     | MirroredShape | -1                             |
+  | T3(valid, NoShape)       | 3     | NoShape       | 0                              |
+  | T4(valid, ZShape)        | 3     | ZShape        | -1                             |
+  | T5(valid, SShape)        | 3     | SShape        | -1                             |
+  | T6(valid, LineShape)     | 3     | LineShape     | -1                             |
+  | T7(valid, TShape)        | 3     | TShape        | 0                              |
+  | T8(valid, SquareShape)   | 3     | SquareShape   | 0                              |
+  | T9(valid, MirroredShape) | 3     | MirroredShape | -1                             |
 
 ### Third Test Case
+Name: testMinX
+Goal: To test the minimun value of x in coords of a pieceShape
 1. Identify testable functions
     * minX()
 
@@ -100,6 +106,8 @@ https://zetcode.com/javagames/tetris/
   | T8(MirroredShape) | MirroredShape | 0      |
 
 ### Forth Test Case
+Name: testMinY
+Goal: To test the minimun value of y in coords of a pieceShape
 1. Identify testable functions
     * minY()
 
@@ -130,6 +138,8 @@ https://zetcode.com/javagames/tetris/
   | T8(MirroredShape) | MirroredShape | -1     |
 
 ### Fifth Test Case
+Name: testTryMove
+Goal: To test if pieceShape can move or not
 1. Identify testable functions
     * tryMove(Shape newPiece, int newX, int newY)
 
@@ -140,30 +150,32 @@ https://zetcode.com/javagames/tetris/
 
 3. Model the input domain
 
-|                      | b1                      | b2                                | b3|b4|b5|b6|b7|b8|
-|----------------------|-------------------------|-----------------------------------|------------------------|------------------------|------------------------|------------------------|------------------------|------------------------|
-| C1: validity of newX | 0 <= index < 10 (valid) | index < 0 or index > 10 (invalid) |  | || | |   |
-| C2: validity of newY | 0 <= index < 22 (valid) | index < 0 or index > 21 (invalid) |  | || | |   |
+|                       | b1                      | b2                                | b3|b4|b5|b6|b7|b8|
+|-----------------------|-------------------------|-----------------------------------|------------------------|------------------------|------------------------|------------------------|------------------------|------------------------|
+| C1: validity of newX  | 0 <= index < 10 (valid) | index < 0 or index > 10 (invalid) |  | || | |   |
+| C2: validity of newY  | 0 <= index < 22 (valid) | index < 0 or index > 21 (invalid) |  | || | |   |
 | C3: Shape of newPiece | noShape                 | ZShape                            |  SShape |LineShape |TShape| SquareShape| LShape| MirroredLShape  |
-| C4: x + newPiece.x   | < 10 and >= 0  (valid)  | > 9 or < 0 (valid)                |  | || | |
-| C5: x + newPiece.x   | < 22 and >= 0  (valid)  | > 21 or < 0 (valid)               |  | || | |
+| C4: x + newPiece.x    | < 10 and >= 0  (valid)  | > 9 or < 0 (invalid)              |  | || | |
+| C5: y - newPiece.y    | < 22 and >= 0  (valid)  | > 21 or < 0 (invalid)             |  | || | |
 4. Combine partitions into tests
     * ISP Criteria: ECC
     * Test requirements -- number of tests (upper bound) = 8
-      (valid, valid, NoShape, valid), (invalid, invalid, ZShape, invalid), (valid, valid, SShape, valid), (valid, valid, LineShape, valid), (valid, valid, TShape, valid), (valid, valid, SquareShape, valid), (valid, valid, MirroredShape, invalid)
+      (valid, valid, NoShape, valid), (invalid, invalid, ZShape, invalid, invalid), (valid, valid, SShape, valid, valid), (valid, valid, LineShape, valid, valid), (valid, valid, TShape, valid, valid), (valid, valid, SquareShape, valid, valid), (valid, valid, MirroredShape, invalid, invalid)
 5. Derive test values
 * | Test                                     | newX | newY | shape         | result |
   |------------------------------------------|------|------|--------|--------|
-  | T1(valid, valid, NoShape, valid)         | 9    | 21   | NoShape       | true   |
-  | T2(invalid, invalid, ZShape, invalid)    | 5    | 5    | ZShape        | false  |
-  | T3(valid, valid, SShape, valid)          | 5    | 5    | SShape        | true   |
-  | T4(valid, valid, LineShape, valid)       | 5    | 5    | LineShape     | true   |
-  | T5(valid, valid, TShape, valid)          | 5    | 5    | TShape        | true   |
-  | T6(valid, valid, SquareShape, valid)     | 5    | 5    | SquareShape   | true   |
-  | T7(valid, valid, LShape, valid)          | 5    | 5    | LShape        | true   |
-  | T8(valid, valid, MirroredShape, invalid) | 9    | 21   | MirroredShape | false  |
+  | T1(valid, valid, NoShape, valid, valid)         | 9    | 21   | NoShape       | true   |
+  | T2(invalid, invalid, ZShape, invalid, invalid)    | -5    | 50   | ZShape        | false  |
+  | T3(valid, valid, SShape, valid, valid)          | 5    | 5    | SShape        | true   |
+  | T4(valid, valid, LineShape, valid, valid)       | 5    | 5    | LineShape     | true   |
+  | T5(valid, valid, TShape, valid, valid)          | 5    | 5    | TShape        | true   |
+  | T6(valid, valid, SquareShape, valid, valid)     | 5    | 5    | SquareShape   | true   |
+  | T7(valid, valid, LShape, valid, valid)          | 5    | 5    | LShape        | true   |
+  | T8(valid, valid, MirroredShape, invalid, invalid) | 9    | 21   | MirroredShape | false  |
 
 ### Sixth Test Case
+Name: testShapeAt
+Goal: To test what shape exist in that position
 1. Identify testable functions
     * shapeAt(int x, int y)
 
@@ -192,6 +204,8 @@ https://zetcode.com/javagames/tetris/
   | T4(invalid, True) | 20   | 22 | Error    |
 
 ### Seventh Test Case
+Name: testPause
+Goal: To test if pause work correctly
 1. Identify testable functions
     * pause()
 
@@ -222,6 +236,8 @@ https://zetcode.com/javagames/tetris/
   | T4(false, false, false) | false                           | false                            | false    | Invalid  |
 
 ### Eighth Test Case
+Name: testGetShape
+Goal: To test if it returns the right value
 1. Identify testable functions
     * getShape()
 
@@ -252,6 +268,8 @@ https://zetcode.com/javagames/tetris/
   | T8(MirroredShape) | MirroredShape | MirroredShape |
 
 ### Ninth Test Case
+Name: testRotateLeft
+Goal: To test if the shape rotate correctly
 1. Identify testable functions
     * rotateLeft()
 
@@ -283,6 +301,8 @@ https://zetcode.com/javagames/tetris/
 
 
 ### Tenth Test Case
+Name: testRotateRight
+Goal: To test if the shape rotate correctly
 1. Identify testable functions
     * rotateRight()
 
